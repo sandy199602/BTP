@@ -18,37 +18,52 @@ public partial class _Default : System.Web.UI.Page
     }
     public void saveTODB()
     {
-        SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["constring"].ConnectionString);
-        con.Open();
-        string cmdtext = "INSERT INTO customer Values('" + email.Text + "', '" + password.Text + "','" + firstname.Text + "', '" + lastname.Text + "', '" + mobileno.Text + "')";
-        SqlCommand cmd = new SqlCommand(cmdtext,con);
-        int no = cmd.ExecuteNonQuery();
-        if (no > 0)
-        {
-            SendEmail();
-            Response.Write("<script>alert('Registration successful. Please Login')</script>");
+        try {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["constring"].ConnectionString);
+            con.Open();
+            //string chkUser = string.Format("SELECT COUNT(*) FROM customer WHERE UserId = '{0}'", email.Text);
+            // SqlCommand chk = new SqlCommand(chkUser, con);
+            // int duplicate = chk.ExecuteScalar();
+
+            string cmdtext = "INSERT INTO customer Values('" + email.Text + "', '" + password.Text + "','" + firstname.Text + "', '" + lastname.Text + "', '" + mobileno.Text + "')";
+            SqlCommand cmd = new SqlCommand(cmdtext, con);
+            int no = cmd.ExecuteNonQuery();
+            if (no > 0)
+            {
+                Response.Write("<script>alert('registrtaion Succssfull');</script>");
+                SendEmail();
+
+            }
+            else
+                Response.Write("<script>alert('registrtaion Succssfull');</script>");
         }
-        else
-            Response.Write("<script>alert('Registration Failed')</script>");
-    }
+        catch( SqlException ee)
+        {
+            Response.Write(ee.Message);
+        }
+        }
+
     public void SendEmail()
     {
+        
+        
+            MailMessage message = new MailMessage();
+            SmtpClient client = new SmtpClient();
+            client.Host = "smtp.gmail.com";
+            client.Port = 587;
+            string emailadd = email.Text;
 
-        MailMessage message = new MailMessage();
-        SmtpClient client = new SmtpClient();
-        client.Host = "smtp.gmail.com";
-        client.Port = 587;
-        string emailadd = email.Text;
-
-        message.From = new MailAddress("sandeepkumarsingh1902@gmail.com");
-        message.To.Add(emailadd);
-        message.Subject = "welcom";
-        message.Body = "welcome to the chawal and chawla buses";
-        message.IsBodyHtml = true;
-        client.EnableSsl = true;
-        client.UseDefaultCredentials = true;
-        client.Credentials = new System.Net.NetworkCredential("sandeepkumarsingh1902@gmail.com", "8116264387sa");
-        client.Send(message);
+            message.From = new MailAddress("onlinebusseat@gmail.com");
+            message.To.Add(emailadd);
+            message.Subject = "Welcome";
+            message.Body = "Welcome to the chawal and chawla buses";
+            message.IsBodyHtml = true;
+            client.EnableSsl = true;
+            client.UseDefaultCredentials = true;
+            client.Credentials = new System.Net.NetworkCredential("onlinebusseat@gmail.com", "btechproject");
+            client.Send(message);
+        
+    
 
 
     }
