@@ -1,8 +1,66 @@
-﻿body { 
- 		SCROLLBAR-FACE-COLOR: white; 
- 		SCROLLBAR-HIGHLIGHT-COLOR: darkgrey; 
- 		SCROLLBAR-SHADOW-COLOR: lightgrey; 
- 		SCROLLBAR-ARROW-COLOR: darkgrey; 
- 		SCROLLBAR-TRACK-COLOR:white; 
- 		SCROLLBAR-BASE-COLOR:white; 
- 		scrollbars-3dlight-color: darkgrey }
+﻿body { background-color:white;
+}
+
+ul.list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: midnightblue;
+    height: 42px;
+    width: auto;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover:not(.active) {
+    background-color: green;
+}
+.active {
+          background-color: #4CAF50;
+        }
+
+
+.input{
+         height:45px;
+         width:300px;
+         font-size:15px;
+         margin-bottom:20px;
+         padding-left:30px;
+
+        }
+.links {
+             line-height: 2.2em;
+             font-size: 14px;
+        }
+#source{
+        background:url("sourceimage.png") left no-repeat;
+        width:233px;
+        padding-left:60px;
+        height:45px;
+       }
+#destination{
+              background:url("destination.png") left no-repeat;
+              width:233px;
+              padding-left:60px;
+              height:45px;
+             }
+.sd{
+    position:absolute;
+  color:#fff;
+  top:50%;
+  left:50%;
+  padding:15px;
+  -ms-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}

@@ -62,9 +62,7 @@ public partial class _Default : System.Web.UI.Page
             client.UseDefaultCredentials = true;
             client.Credentials = new System.Net.NetworkCredential("onlinebusseat@gmail.com", "btechproject");
             client.Send(message);
-        
-    
-
+        Response.Redirect("#message_form");
 
     }
 
@@ -73,6 +71,33 @@ public partial class _Default : System.Web.UI.Page
         saveTODB();
     }
     protected void sendmail(object sender,EventArgs e)
+    {
+
+    }
+
+    protected void loginwindow(object sender, EventArgs e)
+    {
+        try
+        {
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["constring"].ConnectionString);
+            con.Open();
+            // query to check for duplicate username
+            string chkUser = string.Format("SELECT COUNT(*) FROM [customer] WHERE email= '{0}'", email.Text);
+            SqlCommand cmmd = new SqlCommand(chkUser,con);
+            int count = (int)cmmd.ExecuteScalar();
+            if (count == 0)
+                Response.Write("Invalid login credential");
+            else
+                Response.Write("login Successfull");
+
+        }
+        catch(SqlException ee)
+        {
+            Response.Write(ee.Message);
+        }
+    }
+
+    protected void Button3_Click(object sender, EventArgs e)
     {
 
     }

@@ -4,6 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
+    <link href="StyleSheet.css" type="text/css" rel="stylesheet" />
     <style>
         .panel{
             height:1px;
@@ -186,10 +187,22 @@
            <a href="#login_form" id="login_pop">LogIn</a>
            <a href="#join_form" id="join_pop">SignUp</a>
            <a href="#fgt_form" id="fgt_pop"></a>
+           <a href="#message_form"  id="message_pop"></a>
            
        </div>
    </div>
-    <!--popup form#1-->
+        <ul class="list">
+            <li><a  href="#home">Search Buses</a></li>
+            <li><a href="#news">Print /Cancel Ticket</a></li>
+            <li><a href="#contact">Contact</a></li>
+                       
+        </ul>
+            <!--popup message-->
+            <a href="#x" class="overlay" id="message_form"></a>
+    <div class="popup">
+        <h2>Registration Successful. Please login to acctivate your Account.</h2>
+        </div>
+    <!--popup login-->
     <a href="#x" class="overlay" id="login_form"></a>
     <div class="popup">
         <h2>Welcom Guest!</h2>
@@ -214,7 +227,7 @@
                  <a href="#fgt_form" id="fgt_pop">Forgot password?</a>
                 &nbsp;&nbsp;&nbsp;&nbsp;
               
-                <asp:Button ID="Button1" runat="server" Text="Log In" ValidationGroup="RegisterUserValidationGroup"></asp:Button>&nbsp; or&nbsp;<a href="#join_form" id="join_pop">Register</a>
+                <asp:Button ID="Button1" runat="server" Text="Log In" ValidationGroup="RegisterUserValidationGroup" OnClick="loginwindow" ></asp:Button>&nbsp; or&nbsp;<a href="#join_form" id="join_pop">Register</a>
 
             </ContentTemplate>
         </asp:UpdatePanel>
@@ -231,6 +244,8 @@
             <asp:Button Text="send" runat="server" OnClick="sendmail" />
         </div>
         </div>
+            
+                
 
     <!--popup form#2-->
     <a href="#X" class="overlay" id="join_form"></a>
@@ -277,6 +292,21 @@
 
         </div>
             </div>
+        <div class="sd" >
+            <div>
+            <asp:TextBox ID="source" placeholder="Source" runat="server" ></asp:TextBox>
+            <br />
+                </div>
+            <div>
+            <br />
+            <asp:TextBox ID="destination" placeholder="Desination" runat="server" ></asp:TextBox>
+            <br />
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Button ID="Button3" runat="server" BackColor="Red" Font-Bold="True" Font-Italic="True" style="margin-left: 0px" Text="Search Buses" Width="135px" Height="36px" OnClick="Button3_Click" />
+            </div>
+       </div>
+
         </form>
    
 
