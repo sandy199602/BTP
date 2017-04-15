@@ -1,5 +1,9 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+
+
+
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -65,6 +69,7 @@
             top:40%;
             visibility:hidden;
             z-index:10;
+            width:350px;
 
             -webkit-transform:translate(-50%,-50%);
             -moz-transform:translate(-50%,-50%);
@@ -222,6 +227,7 @@
 
         </div>
         <br />
+        <asp:Label ID="error" runat="server" Text="hi this is sandeep"></asp:Label>
         <asp:UpdatePanel ID="Updatepanel1" runat="server">
             <ContentTemplate>
                  <a href="#fgt_form" id="fgt_pop">Forgot password?</a>
@@ -239,7 +245,7 @@
         <p>please enter your register email id></p>
         <div>
            
-            <asp:TextBox placeholder="Email" ID="fgtemail" runat="server"></asp:TextBox>
+            <asp:TextBox placeholder="Email"  ID="fgtemail" runat="server" width="250px"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="email" ValidationGroup="RegisterUserValidation" Text="*" Forecolor="#CC0000" Font-Size="Larger">*</asp:RequiredFieldValidator>
             <asp:Button Text="send" runat="server" OnClick="sendmail" />
         </div>
@@ -264,7 +270,7 @@
         </div>
         <div>
             <label for="firstname">First name</label>
-            <asp:TextBox placeholder="  FirstName" ID="firstname" runat="server"></asp:TextBox>
+            <asp:TextBox placeholder="  FirstName" ID="firstname" runat="server" style="margin-bottom: 0px"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="email" ValidationGroup="RegisterUserValidation" Text="*" Forecolor="#CC0000" Font-Size="Larger">*</asp:RequiredFieldValidator>
         </div>
         <div>
@@ -293,18 +299,22 @@
         </div>
             </div>
         <div class="sd" >
-            <div>
-            <asp:TextBox ID="source" placeholder="Source" runat="server" ></asp:TextBox>
+           
+            <asp:TextBox ID="source" placeholder="Source" runat="server" ToolTip="source"  ></asp:TextBox>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Source is required" ControlToValidate="source" ToolTip="Source is required" BackColor="Red"></asp:RequiredFieldValidator>
             <br />
-                </div>
-            <div>
+            
             <br />
-            <asp:TextBox ID="destination" placeholder="Desination" runat="server" ></asp:TextBox>
+            <asp:TextBox ID="destination" placeholder="Desination" runat="server" ToolTip="Destination" ></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Destination is required" ControlToValidate="destination" BackColor="Red"></asp:RequiredFieldValidator>
             <br />
             <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Button3" runat="server" BackColor="Red" Font-Bold="True" Font-Italic="True" style="margin-left: 0px" Text="Search Buses" Width="135px" Height="36px" OnClick="Button3_Click" />
-            </div>
+           
+            <asp:TextBox ID="calendar" runat="server" MaxLength="10" Height="45px" Width="181px" placeholder="Select journey date"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="Select a valid date" ControlToValidate="calendar" BackColor="Red" ></asp:RequiredFieldValidator>
+            <ajaxToolkit:CalendarExtender ID="calendar_CalendarExtender" runat="server" BehaviorID="calendar_CalendarExtender" TargetControlID="calendar" />
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
+            <asp:Button ID="Button3" runat="server" BackColor="Red" Font-Bold="True" Font-Italic="True" style="margin-left: 0px" Text="Search Buses" Width="135px" Height="36px" OnClick="search" />
+            
        </div>
 
         </form>

@@ -14,7 +14,7 @@ public partial class _Default : System.Web.UI.Page
   
     protected void Page_Load(object sender, EventArgs e)
     {
-
+       
     }
     public void saveTODB()
     {
@@ -81,23 +81,46 @@ public partial class _Default : System.Web.UI.Page
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["constring"].ConnectionString);
             con.Open();
+            string chkUser = string.Format("select count(*) from [customer] where email='{0}'", email.Text);
+            string query = string.Format("select count(*) from [customer] where password='{0}'",password.Text);
+           
+
             // query to check for duplicate username
-            string chkUser = string.Format("SELECT COUNT(*) FROM [customer] WHERE email= '{0}'", email.Text);
+
             SqlCommand cmmd = new SqlCommand(chkUser,con);
             int count = (int)cmmd.ExecuteScalar();
             if (count == 0)
-                Response.Write("Invalid login credential");
+                error.Text = "User does not found please resgister and then login....";
             else
-                Response.Write("login Successfull");
+            {
+                SqlCommand chkpas = new SqlCommand(query, con);
+                string pass = chkpas.ExecuteScalar().ToString();
+                if (pass == password1.Text)
+                {
+                    Session["username"] = login.Text;
+                    Response.Redirect("afterlogin.aspx");
+                  
+                }
+                else
+                {
+                    error.Text = "password is incorrect";
+                }
+            }
 
         }
         catch(SqlException ee)
         {
             Response.Write(ee.Message);
         }
+       
     }
 
-    protected void Button3_Click(object sender, EventArgs e)
+
+
+
+
+
+    protected void search(object sender, EventArgs e)
     {
 
     }

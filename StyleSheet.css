@@ -44,13 +44,13 @@ li a:hover:not(.active) {
         }
 #source{
         background:url("sourceimage.png") left no-repeat;
-        width:233px;
+        width:290px;
         padding-left:60px;
         height:45px;
        }
 #destination{
               background:url("destination.png") left no-repeat;
-              width:233px;
+              width:290px;
               padding-left:60px;
               height:45px;
              }
@@ -64,3 +64,9 @@ li a:hover:not(.active) {
   -webkit-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
 }
+#calendar{
+        background:url("calendar.png") left no-repeat;
+        width:290px;
+        padding-left:60px;
+        height:45px;
+       }
