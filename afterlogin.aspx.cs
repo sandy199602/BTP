@@ -13,12 +13,27 @@ public partial class afterlogin : System.Web.UI.Page
         {
             message.Text = Session["username"].ToString();
         }
-       
+        else
+        {
+            Response.Redirect("Default.aspx");
+        }
+
+
     }
 
 
     protected void find(object sender, EventArgs e)
     {
 
+    }
+
+    protected void logout_Click(object sender, EventArgs e)
+    {
+        Session.Clear();
+        Session.Abandon();
+        Session.RemoveAll();
+        Response.Redirect("Default.aspx");
+        
+       
     }
 }

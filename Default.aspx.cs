@@ -79,33 +79,36 @@ public partial class _Default : System.Web.UI.Page
     {
         try
         {
-            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["constring"].ConnectionString);
+            SqlConnection con = new SqlConnection(@"Data Source=SANDY; Initial Catalog=project; User ID=sa; Password=sql2008;");
+
+
             con.Open();
-            string chkUser = string.Format("select count(*) from [customer] where email='{0}'", email.Text);
-            string query = string.Format("select count(*) from [customer] where password='{0}'",password.Text);
-           
 
-            // query to check for duplicate username
 
-            SqlCommand cmmd = new SqlCommand(chkUser,con);
-            int count = (int)cmmd.ExecuteScalar();
-            if (count == 0)
-                error.Text = "User does not found please resgister and then login....";
-            else
+            SqlCommand cmd = new SqlCommand("select COUNT(*)FROM customer WHERE email='" + login.Text + "' and password='" + password1.Text + "'");
+
+
+            cmd.Connection = con;
+
+
+            int OBJ = Convert.ToInt32(cmd.ExecuteScalar());
+
+
+            if (OBJ > 0)
+
+
             {
-                SqlCommand chkpas = new SqlCommand(query, con);
-                string pass = chkpas.ExecuteScalar().ToString();
-                if (pass == password1.Text)
-                {
-                    Session["username"] = login.Text;
-                    Response.Redirect("afterlogin.aspx");
-                  
-                }
-                else
+
+                Session["username"] = login.Text;
+                Response.Redirect("afterlogin.aspx");
+
+
+            }   
+              else
                 {
                     error.Text = "password is incorrect";
                 }
-            }
+            
 
         }
         catch(SqlException ee)

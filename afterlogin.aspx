@@ -8,25 +8,12 @@
      <link href="StyleSheet.css" type="text/css" rel="stylesheet" />
     <style>
         .panel{
-            height:1px;
+            height:0px;
             padding:10px;
+            
         }
-            .panel a#logout_pop{
-                border: 2px solid #07839f;
-                color: #fff;
-                background-color: #0483a0;
-                background-image: linear-gradient(top,#31b2c3,#0483a0);
-                display: block;
-                float: right;
-                margin-right: 10px;
-                padding: 5px 10px;
-                text-decoration: none;
-                text-shadow: 1px 1px #000;
-                -webkit-border-radius: 10px;
-                -moz-border-radius: 10px;
-                border-radius: 10px;
-            width: 48px;
-        }
+            
+       
         </style>
     <title></title>
 </head>
@@ -37,13 +24,20 @@
    <div style="height:46px">
 
        <div class="panel">
-           
-           <a href="Default.aspx" id="logout_pop">Logout</a>
-           <h1>Welcome 
+            
+          <h3 style="width: 564px">Welcome 
            <asp:Label ID="message" runat="server" Text="Label"></asp:Label>
-           </h1>
+              
+           
+          <asp:Button ID="logout" runat="server" Text="Logout" OnClick="logout_Click" />
+             
+          
+         </h3>
+              
+           
        </div>
        </div>
+        <br />
           <ul class="list">
             <li><a  href="#home">Search Buses</a></li>
             <li><a href="#news">Print /Cancel Ticket</a></li>
