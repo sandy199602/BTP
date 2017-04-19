@@ -17,7 +17,7 @@ public partial class _Default : System.Web.UI.Page
        
     }
     public void saveTODB()
-    {
+    {//learning things
         try {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["constring"].ConnectionString);
             con.Open();
