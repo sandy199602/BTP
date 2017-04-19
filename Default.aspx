@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+﻿ <%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
@@ -206,6 +206,7 @@
             <a href="#x" class="overlay" id="message_form"></a>
     <div class="popup">
         <h2>Registration Successful. Please login to acctivate your Account.</h2>
+          <a class="close" href="#close"></a> 
         </div>
     <!--popup login-->
     <a href="#x" class="overlay" id="login_form"></a>
@@ -235,7 +236,7 @@
                 &nbsp;&nbsp;&nbsp;&nbsp;
               
                 <asp:Button ID="Button1" runat="server" Text="Log In" ValidationGroup="RegisterUserValidationGroup" OnClick="loginwindow" ></asp:Button>&nbsp; or&nbsp;<a href="#join_form" id="join_pop">Register</a>
-
+                  <a class="close" href="#close"></a> 
             </ContentTemplate>
         </asp:UpdatePanel>
     </div>
@@ -249,6 +250,7 @@
             <asp:TextBox placeholder="Email"  ID="fgtemail" runat="server" width="250px"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="email" ValidationGroup="RegisterUserValidation" Text="*" Forecolor="#CC0000" Font-Size="Larger">*</asp:RequiredFieldValidator>
             <asp:Button Text="send" runat="server" OnClick="sendmail" />
+              <a class="close" href="#close"></a> 
         </div>
         </div>
             
