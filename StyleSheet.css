@@ -44,10 +44,8 @@ li a:hover:not(.active) {
         }
 #source{
         background:url("sourceimage.png") left no-repeat;
-        width:290px;
         padding-left:60px;
-        height:45px;
-       }
+        }
 #destination{
               background:url("destination.png") left no-repeat;
               width:290px;

@@ -210,6 +210,7 @@
     <!--popup login-->
     <a href="#x" class="overlay" id="login_form"></a>
     <div class="popup">
+         <asp:Label ID="error" runat="server" Text=""></asp:Label>
         <h2>Welcom Guest!</h2>
         <p>Please enter your login and passsword here</p>
 
@@ -227,7 +228,7 @@
 
         </div>
         <br />
-        <asp:Label ID="error" runat="server" Text="hi this is sandeep"></asp:Label>
+       
         <asp:UpdatePanel ID="Updatepanel1" runat="server">
             <ContentTemplate>
                  <a href="#fgt_form" id="fgt_pop">Forgot password?</a>
@@ -300,12 +301,17 @@
             </div>
         <div class="sd" >
            
-            <asp:TextBox ID="source" placeholder="Source" runat="server" ToolTip="source"  ></asp:TextBox>
+            <asp:TextBox ID="source" placeholder="Source" runat="server" ToolTip="source" Height="45px" Width="290px"  ></asp:TextBox>
+             <ajaxToolkit:AutoCompleteExtender ID="auto_AutoCompleteExtender" ServiceMethod="tosource" runat="server" BehaviorID="auto_AutoCompleteExtender" CompletionInterval="100" DelimiterCharacters="" MinimumPrefixLength="1"  TargetControlID="source">
+        </ajaxToolkit:AutoCompleteExtender>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Source is required" ControlToValidate="source" ToolTip="Source is required" BackColor="Red"></asp:RequiredFieldValidator>
             <br />
             
             <br />
-            <asp:TextBox ID="destination" placeholder="Desination" runat="server" ToolTip="Destination" ></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Destination is required" ControlToValidate="destination" BackColor="Red"></asp:RequiredFieldValidator>
+            <asp:TextBox ID="destination" placeholder="Desination" runat="server" ToolTip="Destination" ></asp:TextBox>
+            <ajaxToolkit:AutoCompleteExtender ID="destination_AutoCompleteExtender" ServiceMethod="todestination" runat="server" BehaviorID="destination_AutoCompleteExtender"  TargetControlID="destination" CompletionInterval="100" MinimumPrefixLength="1">
+             </ajaxToolkit:AutoCompleteExtender>
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Destination is required" ControlToValidate="destination" BackColor="Red"></asp:RequiredFieldValidator>
             <br />
             <br />
            

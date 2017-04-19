@@ -127,4 +127,62 @@ public partial class _Default : System.Web.UI.Page
     {
 
     }
+    [System.Web.Script.Services.ScriptMethod()]
+    [System.Web.Services.WebMethod]
+    public static List<string> tosource(string prefixText, int count)
+    {
+        using (SqlConnection conn = new SqlConnection())
+        {
+            conn.ConnectionString = ConfigurationManager
+                    .ConnectionStrings["constring"].ConnectionString;
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandText = "select [Route] from Route where " +
+                "[Route] like @SearchText + '%'";
+                cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                cmd.Connection = conn;
+                conn.Open();
+                List<string> to = new List<string>();
+                using (SqlDataReader sdr = cmd.ExecuteReader())
+                {
+                    while (sdr.Read())
+                    {
+                        to.Add(sdr["Route"].ToString());
+                    }
+                }
+                conn.Close();
+                return to;
+            }
+        }
+    }
+
+    [System.Web.Script.Services.ScriptMethod()]
+    [System.Web.Services.WebMethod]
+    public static List<string> todestination(string prefixText, int count)
+    {
+        using (SqlConnection conn = new SqlConnection())
+        {
+            conn.ConnectionString = ConfigurationManager
+                    .ConnectionStrings["constring"].ConnectionString;
+            using (SqlCommand cmd = new SqlCommand())
+            {
+                cmd.CommandText = "select [Route] from Route where " +
+                "[Route] like @SearchText + '%'";
+                cmd.Parameters.AddWithValue("@SearchText", prefixText);
+                cmd.Connection = conn;
+                conn.Open();
+                List<string> to = new List<string>();
+                using (SqlDataReader sdr = cmd.ExecuteReader())
+                {
+                    while (sdr.Read())
+                    {
+                        to.Add(sdr["Route"].ToString());
+                    }
+                }
+                conn.Close();
+                return to;
+            }
+        }
+    }
+
 }
