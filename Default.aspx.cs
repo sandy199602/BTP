@@ -72,7 +72,7 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void sendmail(object sender,EventArgs e)
     {
-
+       
     }
 
     protected void loginwindow(object sender, EventArgs e)
@@ -125,7 +125,11 @@ public partial class _Default : System.Web.UI.Page
 
     protected void search(object sender, EventArgs e)
     {
+        Session["Name"] = source.Text;
+        Session["Name2"] = destination.Text;
+        Session["Name3"] = calendar.Text;
 
+        Response.Redirect("searching.aspx");
     }
     [System.Web.Script.Services.ScriptMethod()]
     [System.Web.Services.WebMethod]
@@ -173,7 +177,7 @@ public partial class _Default : System.Web.UI.Page
                 conn.Open();
                 List<string> to = new List<string>();
                 using (SqlDataReader sdr = cmd.ExecuteReader())
-                {
+                   {
                     while (sdr.Read())
                     {
                         to.Add(sdr["Route"].ToString());

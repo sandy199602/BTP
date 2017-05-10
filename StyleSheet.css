@@ -7,12 +7,14 @@ ul.list {
     padding: 0;
     overflow: hidden;
     background-color: midnightblue;
-    height: 42px;
+    height: 43px;
     width: auto;
 }
 
 li {
     float: left;
+    width: 151px;
+    height: 25px;
 }
 
 li a {
@@ -21,6 +23,8 @@ li a {
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    width: 148px;
+    height: 54px;
 }
 li a:hover:not(.active) {
     background-color: green;
@@ -68,3 +72,7 @@ li a:hover:not(.active) {
         padding-left:60px;
         height:45px;
        }
+#pbdetails{
+    width:55%;
+    padding-top:15px;
+}
