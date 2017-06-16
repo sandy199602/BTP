@@ -6,19 +6,18 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
 using System.Data.SqlClient;
-using System.Net.Mail;
 using System.Configuration;
-
-public partial class _Default : System.Web.UI.Page
+using System.Net.Mail;
+public partial class CancelTicket : System.Web.UI.Page
 {
-  
     protected void Page_Load(object sender, EventArgs e)
     {
 
     }
     public void saveTODB()
     {//learning things
-        try {
+        try
+        {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["constring"].ConnectionString);
             con.Open();
             //string chkUser = string.Format("SELECT COUNT(*) FROM customer WHERE UserId = '{0}'", email.Text);
@@ -37,31 +36,31 @@ public partial class _Default : System.Web.UI.Page
             else
                 Response.Write("<script>alert('registrtaion Succssfull');</script>");
         }
-        catch( SqlException ee)
+        catch (SqlException ee)
         {
             Response.Write(ee.Message);
         }
-        }
+    }
 
     public void SendEmail()
     {
-        
-        
-            MailMessage message = new MailMessage();
-            SmtpClient client = new SmtpClient();
-            client.Host = "smtp.gmail.com";
-            client.Port = 587;
-            string emailadd = email.Text;
 
-            message.From = new MailAddress("onlinebusseat@gmail.com");
-            message.To.Add(emailadd);
-            message.Subject = "Welcome";
-            message.Body = "Welcome to the Moonlight travels service. ";
-            message.IsBodyHtml = true;
-            client.EnableSsl = true;
-            client.UseDefaultCredentials = true;
-            client.Credentials = new System.Net.NetworkCredential("onlinebusseat@gmail.com", "btechproject");
-            client.Send(message);
+
+        MailMessage message = new MailMessage();
+        SmtpClient client = new SmtpClient();
+        client.Host = "smtp.gmail.com";
+        client.Port = 587;
+        string emailadd = email.Text;
+
+        message.From = new MailAddress("onlinebusseat@gmail.com");
+        message.To.Add(emailadd);
+        message.Subject = "Welcome";
+        message.Body = "Welcome to the chawal and chawla buses";
+        message.IsBodyHtml = true;
+        client.EnableSsl = true;
+        client.UseDefaultCredentials = true;
+        client.Credentials = new System.Net.NetworkCredential("onlinebusseat@gmail.com", "btechproject");
+        client.Send(message);
         Response.Redirect("#message_form");
 
     }
@@ -70,18 +69,18 @@ public partial class _Default : System.Web.UI.Page
     {
         saveTODB();
     }
-    protected void sendmail(object sender,EventArgs e)
+    protected void sendmail(object sender, EventArgs e)
     {
         try
         {
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["constring"].ConnectionString);
             con.Open();
-            SqlCommand cmd=new SqlCommand("select count(*)from customer where email='"+fgtemail.Text+"'");
+            SqlCommand cmd = new SqlCommand("select count(*)from customer where email='" + fgtemail.Text + "'");
             cmd.Connection = con;
             int OBJ = Convert.ToInt32(cmd.ExecuteScalar());
-          if (OBJ>0)
-                {
+            if (OBJ > 0)
+            {
                 MailMessage message = new MailMessage();
                 message.From = new MailAddress("onlinebusseat@gmail.com");
                 message.To.Add(fgtemail.Text);
@@ -101,19 +100,17 @@ public partial class _Default : System.Web.UI.Page
 
             }
         }
-        catch(Exception ee)
+        catch (Exception ee)
         {
             Response.Write(ee.Message);
         }
-       
+
     }
 
     protected void loginwindow(object sender, EventArgs e)
     {
         try
         {
-            if (login.Text == "admin" && password1.Text == "admin")
-                Response.Redirect("admin.aspx");
             SqlConnection con = new SqlConnection(@"Data Source=SANDY; Initial Catalog=project; User ID=sa; Password=sql2008;");
 
 
@@ -138,91 +135,55 @@ public partial class _Default : System.Web.UI.Page
                 Response.Redirect("afterlogin.aspx");
 
 
-            }   
-              else
-                {
+            }
+            else
+            {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('check the username and password')", true);
 
             }
 
 
         }
-        catch(SqlException ee)
+        catch (SqlException ee)
         {
             Response.Write(ee.Message);
         }
-       
+
     }
 
 
 
-
-
-
-    protected void search(object sender, EventArgs e)
+    protected void cancel(object sender, EventArgs e)
     {
-        Session["Name"] = source.Text;
-        Session["Name2"] = destination.Text;
-        Session["Name3"] = calendar.Text;
-
-        Response.Redirect("searching.aspx");
-    }
-    [System.Web.Script.Services.ScriptMethod()]
-    [System.Web.Services.WebMethod]
-    public static List<string> tosource(string prefixText, int count)
-    {
-        using (SqlConnection conn = new SqlConnection())
+        try
         {
-            conn.ConnectionString = ConfigurationManager
-                    .ConnectionStrings["constring"].ConnectionString;
-            using (SqlCommand cmd = new SqlCommand())
-            {
-                cmd.CommandText = "select [Route] from Route where " +
-                "[Route] like @SearchText + '%'";
-                cmd.Parameters.AddWithValue("@SearchText", prefixText);
-                cmd.Connection = conn;
-                conn.Open();
-                List<string> to = new List<string>();
-                using (SqlDataReader sdr = cmd.ExecuteReader())
-                {
-                    while (sdr.Read())
-                    {
-                        to.Add(sdr["Route"].ToString());
-                    }
-                }
-                conn.Close();
-                return to;
-            }
-        }
-    }
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["constring"].ConnectionString);
+            con.Open();
+            //string chkUser = string.Format("SELECT COUNT(*) FROM customer WHERE UserId = '{0}'", email.Text);
+            // SqlCommand chk = new SqlCommand(chkUser, con);
+            // int duplicate = chk.ExecuteScalar();
 
-    [System.Web.Script.Services.ScriptMethod()]
-    [System.Web.Services.WebMethod]
-    public static List<string> todestination(string prefixText, int count)
-    {
-        using (SqlConnection conn = new SqlConnection())
+            string cmdtext = "select * from Ticket where pnr='"+pnr.Text+"' and [passenger name]='"+pname.Text+"'and seats='"+Seats.Text+"' and date='"+doj.Text+"'";
+            SqlCommand cmd = new SqlCommand(cmdtext, con);
+            int no = Convert.ToInt32(cmd.ExecuteScalar());
+            if (no > 0)
+            {
+                string query= "delete from Ticket where pnr='" + pnr.Text + "' and [passenger name]='" + pname.Text + "'and seats='" + Seats.Text + "' and date='" + doj.Text + "'";
+                cmd.CommandText = query;
+                no = Convert.ToInt32(cmd.ExecuteScalar());
+               
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Your ticket has been canceled')", true);
+              
+            }
+            
+            else
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please enter a valid details')", true);
+
+        }
+        catch (SqlException ee)
         {
-            conn.ConnectionString = ConfigurationManager
-                    .ConnectionStrings["constring"].ConnectionString;
-            using (SqlCommand cmd = new SqlCommand())
-            {
-                cmd.CommandText = "select [Route] from Route where " +
-                "[Route] like @SearchText + '%'";
-                cmd.Parameters.AddWithValue("@SearchText", prefixText);
-                cmd.Connection = conn;
-                conn.Open();
-                List<string> to = new List<string>();
-                using (SqlDataReader sdr = cmd.ExecuteReader())
-                   {
-                    while (sdr.Read())
-                    {
-                        to.Add(sdr["Route"].ToString());
-                    }
-                }
-                conn.Close();
-                return to;
-            }
+            Response.Write(ee.Message);
         }
-    }
 
+    }
 }

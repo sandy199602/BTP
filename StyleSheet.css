@@ -1,13 +1,14 @@
 ﻿body { background-color:white;
+    height: 329px;
 }
 
 ul.list {
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding-top:8px;
     overflow: hidden;
     background-color: midnightblue;
-    height: 43px;
+    height:40px;
     width: auto;
 }
 

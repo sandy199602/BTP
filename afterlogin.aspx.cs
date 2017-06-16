@@ -96,6 +96,10 @@ public partial class afterlogin : System.Web.UI.Page
 
     protected void find(object sender, EventArgs e)
     {
-
+        Session["source"]= source.Text;
+        Session["destination"] = destination.Text;
+        Session["date"] = calendar.Text;
+        Session["username"] = Session["username"];
+        Response.Redirect("asearching.aspx");
     }
 }

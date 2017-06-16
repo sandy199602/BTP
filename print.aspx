@@ -179,8 +179,8 @@
        }
          .design{
             position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 35%;
+  left: 49%;
   margin-top: -50px;
   margin-left: -100px;
         }
@@ -191,6 +191,8 @@
 </head>
 <body>
     <form id="form2" runat="server">
+        <img src="banner12.jpg" style=" height:100px; width: 230px;" alt="Bus logo" >
+            <img src="Capture.PNG" alt="Bus logo" style="height: 67px; background-color:yellow;" >
         <div>
    <div style="height:46px">
 
@@ -203,9 +205,10 @@
        </div>
    </div>
         <ul class="list">
-            <li><a  href="#home">Search Buses</a></li>
-            <li><a href="#news">Print /Cancel Ticket</a></li>
-            <li><a href="#contact">Contact</a></li>
+           <li><a  href="Default.aspx">Search Buses</a></li>
+            <li><a href="printticket.aspx">Print Ticket</a></li>
+            <li><a href="CancelTicket.aspx">Cancel Ticket</a></li>
+            <li><a href="Contact.aspx">Contact</a></li>
                        
         </ul>
             <!--popup message-->
@@ -337,10 +340,15 @@
                 <br />
                 <asp:Literal ID="seats" runat="server" Text="seat number"></asp:Literal>
                 <asp:TextBox ID="seat" runat="server" ></asp:TextBox>
+                 <br />
+                <br />
+                <asp:Literal ID="Literal2" runat="server" Text="Amount">Amount-</asp:Literal>                
+                <asp:label ID="label" runat="server" ></asp:label>
                 <br />
                 <br />
                 <asp:Literal ID="Label4" runat="server" Text="Number of tickets">Number of tickets:-</asp:Literal>                
                 <asp:Literal ID="tickets" runat="server" ></asp:Literal>
+                
                 <br />
                 <br />
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

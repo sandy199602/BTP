@@ -190,6 +190,8 @@
     
     
      <form id="form1" runat="server">
+         <img src="banner12.jpg" style=" height:100px; width: 230px;" alt="Bus logo" >
+            <img src="Capture.PNG" alt="Bus logo" style="height: 67px; background-color:yellow;" >
         <div>
    <div style="height:46px">
 
@@ -202,9 +204,10 @@
        </div>
    </div>
         <ul class="list">
-            <li><a  href="#home">Bus Ticket</a></li>
-            <li><a href="#news">Print /Cancel Ticket</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a  href="Default.aspx">Search Buses</a></li>
+            <li><a href="printticket.aspx">Print Ticket</a></li>
+            <li><a href="CancelTicket.aspx">Cancel Ticket</a></li>
+            <li><a href="Contact.aspx">Contact</a></li>
                        
         </ul>
             <br />
@@ -357,7 +360,7 @@
          </fieldset>
     
          <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-    
+     <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
     </form>
     
 </body>

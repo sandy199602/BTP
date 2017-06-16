@@ -1,8 +1,4 @@
-﻿ <%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
-
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Contact.aspx.cs" Inherits="Contact" %>
 
 <!DOCTYPE html>
 
@@ -69,7 +65,7 @@
             top:40%;
             visibility:hidden;
             z-index:10;
-            width:550px;
+            width:350px;
 
             -webkit-transform:translate(-50%,-50%);
             -moz-transform:translate(-50%,-50%);
@@ -185,15 +181,12 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            
-            <img src="banner12.jpg" style=" height:100px; width: 230px;" alt="Bus logo" >
+        <img src="banner12.jpg" style=" height:100px; width: 230px;" alt="Bus logo" >
             <img src="Capture.PNG" alt="Bus logo" style="height: 67px; background-color:yellow;" >
+        <div>
    <div style="height:46px">
 
        <div class="panel">
-      
-           
            <a href="#login_form" id="login_pop">LogIn</a>
            <a href="#join_form" id="join_pop">SignUp</a>
            <a href="#fgt_form" id="fgt_pop"></a>
@@ -205,7 +198,6 @@
             <li><a  href="Default.aspx">Search Buses</a></li>
             <li><a href="printticket.aspx">Print Ticket</a></li>
             <li><a href="CancelTicket.aspx">Cancel Ticket</a></li>
-            
             <li><a href="Contact.aspx">Contact</a></li>
                        
         </ul>
@@ -270,8 +262,7 @@
         <p>please enter your details here></p>
         <div>
             <label for="email">Login(Email)</label>
-            <asp:TextBox placeholder="  Email" ID="email" runat="server">
-            </asp:TextBox><asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please enter a valid email id" ControlToValidate="email" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Font-Bold="True" Font-Italic="True"></asp:RegularExpressionValidator>
+            <asp:TextBox placeholder="  Email" ID="email" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rf2" runat="server" ControlToValidate="email" ValidationGroup="RegisterUserValidation" Text="*" Forecolor="#CC0000" Font-Size="Larger">*</asp:RequiredFieldValidator>
         </div>
         <div>
@@ -309,33 +300,10 @@
 
         </div>
             </div>
-        <div class="sd" style=" margin-top:130px;" >
-           
-            <asp:TextBox ID="source" placeholder="Source" runat="server" ToolTip="source" Height="45px" Width="290px"  ></asp:TextBox>
-             <ajaxToolkit:AutoCompleteExtender ID="auto_AutoCompleteExtender" ServiceMethod="tosource" runat="server" BehaviorID="auto_AutoCompleteExtender" CompletionInterval="100" DelimiterCharacters="" MinimumPrefixLength="1"  TargetControlID="source">
-        </ajaxToolkit:AutoCompleteExtender>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Source is required" ControlToValidate="source" ToolTip="Source is required" BackColor="Red"></asp:RequiredFieldValidator>
-            <br />
-            
-            <br />
-            <asp:TextBox ID="destination" placeholder="Desination" runat="server" ToolTip="Destination" ></asp:TextBox>
-            <ajaxToolkit:AutoCompleteExtender ID="destination_AutoCompleteExtender" ServiceMethod="todestination" runat="server" BehaviorID="destination_AutoCompleteExtender"  TargetControlID="destination" CompletionInterval="100" MinimumPrefixLength="1">
-             </ajaxToolkit:AutoCompleteExtender>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Destination is required" ControlToValidate="destination" BackColor="Red"></asp:RequiredFieldValidator>
-            <br />
-            <br />
-           
-            <asp:TextBox ID="calendar" runat="server" MaxLength="10" Height="45px" Width="181px" placeholder="Select journey date"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="Select a valid date" ControlToValidate="calendar" BackColor="Red" ></asp:RequiredFieldValidator>
-            <ajaxToolkit:CalendarExtender ID="calendar_CalendarExtender" runat="server" BehaviorID="calendar_CalendarExtender" TargetControlID="calendar" />
-            <br />
-            <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Button3" runat="server" BackColor="Red" Font-Bold="True" Font-Italic="True" style="margin-left: 0px" Text="Search Buses" Width="135px" Height="36px" OnClick="search" />
-            
-       </div>
-
+        <fieldset>
+            <legend>Contact us</legend>
+            Please leave your query at <b>onlinebusseat@gmail.com</b>.We will get back to you as soon as possible.
+        </fieldset>
         </form>
-   
-
 </body>
 </html>

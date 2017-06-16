@@ -150,34 +150,39 @@ public partial class searching : System.Web.UI.Page
     {
         GridViewRow row = gvbuses.SelectedRow;
         TextBox1.Text = row.Cells[1].Text;
-       SqlConnection con =new SqlConnection( @"Data Source=SANDY; Initial Catalog=Project; User=sa; Password=sql2008;");
+        TextBox2.Text = row.Cells[8].Text;
+        Session["Arrival_Time"] = row.Cells[7].Text;
+        Session["deperaturetime"] = row.Cells[6].Text;
+        SqlConnection con =new SqlConnection( @"Data Source=SANDY; Initial Catalog=Project; User=sa; Password=sql2008;");
         con.Open();
-        SqlCommand cmd = new SqlCommand("select count(*)from status where buscode='" + TextBox1.Text + "' and date='" + calendercarry.Text + "'");
-        cmd.Connection = con;
+        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('PLEASE LOGIN OR REGISTER TO VIEW THE SEAT')", true);
+
+        /*  SqlCommand cmd = new SqlCommand("select count(*)from status where buscode='" + TextBox1.Text + "' and date='" + calendercarry.Text + "'");
+          cmd.Connection = con;
+          int OBJ = Convert.ToInt32(cmd.ExecuteScalar());
 
 
-        int OBJ = Convert.ToInt32(cmd.ExecuteScalar());
+          if (OBJ > 0)
+          {
+              Session["rate"] = TextBox2.Text;
+              Session["buscode"] = TextBox1.Text;
+              Session["date"] = calendercarry.Text;
+              Session["source"] = Session["name"];
+              Session["destination"] = Session["name2"];
+              Response.Redirect("book.aspx");
 
 
-        if (OBJ > 0)
-
-
-        {
-
-            Session["buscode"] = TextBox1.Text;
-            Session["date"] = calendercarry.Text;
-            Response.Redirect("book.aspx");
-
-
-        }
-        else
-        {
-            string query="insert into status values ('" + TextBox1.Text + "','" + calendercarry.Text + "','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0')";
-            cmd.CommandText = query;
-            cmd.ExecuteNonQuery();
-            Session["buscode"] = TextBox1.Text;
-            Session["date"] = calendercarry.Text;
-            Response.Redirect("book.aspx");
-        }
+          }
+          else
+          {
+              string query="insert into status values ('" + TextBox1.Text + "','" + calendercarry.Text + "','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0','0')";
+              cmd.CommandText = query;
+              cmd.ExecuteNonQuery();
+              Session["buscode"] = TextBox1.Text;
+              Session["date"] = calendercarry.Text;
+              Session["source"] = Session["name"];
+              Session["destination"] = Session["name2"];
+              Response.Redirect("book.aspx");
+          }*/
     }
 }

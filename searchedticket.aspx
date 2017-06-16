@@ -1,14 +1,11 @@
-﻿ <%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
-
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
-
-
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="searchedticket.aspx.cs" Inherits="searchedticket" %>
 
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-    <link href="StyleSheet.css" type="text/css" rel="stylesheet" />
+    <title></title>
+<link href="StyleSheet.css" type="text/css" rel="stylesheet" />
     <style>
         .panel{
             height:1px;
@@ -69,7 +66,7 @@
             top:40%;
             visibility:hidden;
             z-index:10;
-            width:550px;
+            width:350px;
 
             -webkit-transform:translate(-50%,-50%);
             -moz-transform:translate(-50%,-50%);
@@ -178,22 +175,29 @@
            -webkit-box-shadow:0 1px 0 rgba(255,255,255,0.3)inset,0 1px 0 #fff;
            box-shadow:0 1px 0 rgba(255,255,255,0.3)inset,0 1px 0 #fff;
        }
+         .design{
+            position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-top: -50px;
+  margin-left: -100px;
+        }
+        .auto-style1 {
+            width: 442px;
+        }
     </style>
     
-    <title>Login</title>
+    
     
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div>
-            
-            <img src="banner12.jpg" style=" height:100px; width: 230px;" alt="Bus logo" >
+    <form id="form2" runat="server">
+        <img src="banner12.jpg" style=" height:100px; width: 230px;" alt="Bus logo" >
             <img src="Capture.PNG" alt="Bus logo" style="height: 67px; background-color:yellow;" >
+        <div>
    <div style="height:46px">
 
        <div class="panel">
-      
-           
            <a href="#login_form" id="login_pop">LogIn</a>
            <a href="#join_form" id="join_pop">SignUp</a>
            <a href="#fgt_form" id="fgt_pop"></a>
@@ -202,10 +206,9 @@
        </div>
    </div>
         <ul class="list">
-            <li><a  href="Default.aspx">Search Buses</a></li>
+           <li><a  href="Default.aspx">Search Buses</a></li>
             <li><a href="printticket.aspx">Print Ticket</a></li>
             <li><a href="CancelTicket.aspx">Cancel Ticket</a></li>
-            
             <li><a href="Contact.aspx">Contact</a></li>
                        
         </ul>
@@ -256,7 +259,7 @@
            
             <asp:TextBox placeholder="Email"  ID="fgtemail" runat="server" width="250px"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="email" ValidationGroup="RegisterUserValidation" Text="*" Forecolor="#CC0000" Font-Size="Larger">*</asp:RequiredFieldValidator>
-            <asp:Button Text="send" runat="server" OnClick="sendmail" ValidationGroup="RegisterUserValidationGroup"/>
+            <asp:Button Text="send" runat="server" OnClick="sendmail" />
               <a class="close" href="#close"></a> 
         </div>
         </div>
@@ -270,8 +273,7 @@
         <p>please enter your details here></p>
         <div>
             <label for="email">Login(Email)</label>
-            <asp:TextBox placeholder="  Email" ID="email" runat="server">
-            </asp:TextBox><asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Please enter a valid email id" ControlToValidate="email" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Font-Bold="True" Font-Italic="True"></asp:RegularExpressionValidator>
+            <asp:TextBox placeholder="  Email" ID="email" runat="server"></asp:TextBox>
             <asp:RequiredFieldValidator ID="rf2" runat="server" ControlToValidate="email" ValidationGroup="RegisterUserValidation" Text="*" Forecolor="#CC0000" Font-Size="Larger">*</asp:RequiredFieldValidator>
         </div>
         <div>
@@ -309,33 +311,91 @@
 
         </div>
             </div>
-        <div class="sd" style=" margin-top:130px;" >
-           
-            <asp:TextBox ID="source" placeholder="Source" runat="server" ToolTip="source" Height="45px" Width="290px"  ></asp:TextBox>
-             <ajaxToolkit:AutoCompleteExtender ID="auto_AutoCompleteExtender" ServiceMethod="tosource" runat="server" BehaviorID="auto_AutoCompleteExtender" CompletionInterval="100" DelimiterCharacters="" MinimumPrefixLength="1"  TargetControlID="source">
-        </ajaxToolkit:AutoCompleteExtender>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="Source is required" ControlToValidate="source" ToolTip="Source is required" BackColor="Red"></asp:RequiredFieldValidator>
-            <br />
-            
-            <br />
-            <asp:TextBox ID="destination" placeholder="Desination" runat="server" ToolTip="Destination" ></asp:TextBox>
-            <ajaxToolkit:AutoCompleteExtender ID="destination_AutoCompleteExtender" ServiceMethod="todestination" runat="server" BehaviorID="destination_AutoCompleteExtender"  TargetControlID="destination" CompletionInterval="100" MinimumPrefixLength="1">
-             </ajaxToolkit:AutoCompleteExtender>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="Destination is required" ControlToValidate="destination" BackColor="Red"></asp:RequiredFieldValidator>
-            <br />
-            <br />
-           
-            <asp:TextBox ID="calendar" runat="server" MaxLength="10" Height="45px" Width="181px" placeholder="Select journey date"></asp:TextBox><asp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="Select a valid date" ControlToValidate="calendar" BackColor="Red" ></asp:RequiredFieldValidator>
-            <ajaxToolkit:CalendarExtender ID="calendar_CalendarExtender" runat="server" BehaviorID="calendar_CalendarExtender" TargetControlID="calendar" />
-            <br />
-            <br />
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;
-            <asp:Button ID="Button3" runat="server" BackColor="Red" Font-Bold="True" Font-Italic="True" style="margin-left: 0px" Text="Search Buses" Width="135px" Height="36px" OnClick="search" />
-            
-       </div>
+        
+          <fieldset>
+             <legend>Ticket</legend>
+          <div>
+              <table>
+                  <tr>
+                      <td class="auto-style1">
+                          &nbsp;</td>
+                  </tr>
+                  <tr>
+                      <td class="auto-style1">
+                          <asp:Literal ID="literal9" Text="PNR" runat="server"> </asp:Literal>
+                              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                              &nbsp;&nbsp;
+                              <asp:TextBox ID="pnr" runat="server" ReadOnly="True"></asp:TextBox>
+                         
+                      </td>
+                      <td>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <asp:Literal ID="literal10" Text="Bus No" runat="server"></asp:Literal>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                          &nbsp;&nbsp;<asp:TextBox ID="busno" runat="server" ReadOnly="True"></asp:TextBox>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="auto-style1">
+                          <asp:Literal ID="literal1" Text="Passenger Name" runat="server"> </asp:Literal>
+                              &nbsp;&nbsp;
+                              <asp:TextBox ID="pdetails" runat="server" ReadOnly="True"></asp:TextBox>
+                         
+                      </td>
+                      <td>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <asp:Literal ID="literal2" Text="Date of Journey" runat="server"></asp:Literal>
+                          &nbsp;&nbsp;<asp:TextBox ID="doj" runat="server" ReadOnly="True"></asp:TextBox>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="auto-style1">
+                          <asp:Literal ID="literal5" runat="server" Text="Source"></asp:Literal>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <asp:TextBox ID="source1" runat="server" ReadOnly="True" Height="22px" ></asp:TextBox>
+                      </td>
+                                 
+                      <td>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;<asp:Literal ID="literal6" runat="server" Text="Destination"></asp:Literal>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <asp:TextBox ID="destination1" runat="server" ReadOnly="True" ></asp:TextBox>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="auto-style1">
+                          <asp:Literal ID="literal7" runat="server" Text="Deperature_Time"></asp:Literal>
+                          &nbsp;&nbsp;
+                          <asp:TextBox ID="dtime" runat="server" ReadOnly="True" ></asp:TextBox>
+                      </td>
+                      <td>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Literal ID="literal4" runat="server" Text="Seat Number"></asp:Literal>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:TextBox ID="seatno" runat="server" ReadOnly="True"></asp:TextBox>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="auto-style1">
+                          <asp:Literal ID="literal8" runat="server" Text="Arrival_Time"></asp:Literal>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                          <asp:TextBox ID="atime" runat="server" ReadOnly="True" ></asp:TextBox>
+                      </td>
+                      <td>
+                          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Literal ID="literal12" Text="Amount to be paid:-" runat="server"></asp:Literal>
+                          <asp:Label ID="label1" runat="server"></asp:Label>
 
-        </form>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="auto-style1">
+                          &nbsp;</td>
+                  </tr>
+                  
+                                              
+              </table>
+          </div>
+              </fieldset>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                             <asp:Button ID="print" runat="server" Text="Print" OnClientClick="javascript:window.print();" />
    
 
+    </form>
 </body>
 </html>
